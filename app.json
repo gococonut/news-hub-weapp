@@ -1,0 +1,13 @@
+{
+  "pages": [
+    "pages/news/index",
+    "pages/index/index",
+    "pages/webviewContainer/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "black",
+    "navigationBarBackgroundColor": "#000",
+    "navigationBarTitleText": "G-N-H",
+    "navigationBarTextStyle": "light"
+  }
+}

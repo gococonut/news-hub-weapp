@@ -1,0 +1,13 @@
+<view class='container'>
+  <view class="list-view">
+    <view class="news" wx:for="{{items}}" data-url="{{item.url}}" bindtap="showNewsDetail">
+      <view class="news-icon" style="background-image:url('{{item.imgUrl}}')"></view>
+      <view class="news-detail">
+        <text class="news-title">{{item.title}}</text>
+        <text class="news-description">{{item.subTitle}}</text>
+        <text class="news-time">{{item.time}}</text>
+        <text class="news-time">{{item.source}}</text>
+      </view>
+    </view>
+  </view>
+</view>
