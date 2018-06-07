@@ -1,4 +1,8 @@
 {
     "enablePullDownRefresh": true,
-    "onReachBottomDistance": 800
+    "onReachBottomDistance": 800,
+    "backgroundTextStyle": "dark",
+    "usingComponents": {
+      "zan-tag": "../../bower_components/zanui-weapp/dist/tag/index"
+    }
 }

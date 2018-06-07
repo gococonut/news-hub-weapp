@@ -12,6 +12,7 @@ import resources from './resources'
 import wx from './wx'
 import * as Enums from './Enum'
 import InfiniteScrollList from './InfiniteScrollList'
+import _ from './lodash'
 
 export {
   wx,
@@ -27,5 +28,6 @@ export {
   SequencePage,
   EventEmitter,
   Enums,
-  InfiniteScrollList
+  InfiniteScrollList,
+  _
 }

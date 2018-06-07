@@ -1,12 +1,24 @@
 <view class='container'>
+  <view class="search-container" wx:if="{{showSearchBar}}">
+    <view class="search-input">
+      <image class="input-icon" src="./images/search.svg" />
+      <input style="width:100%" maxlength="10" placeholder="search" bindconfirm="search" confirm-type="done"/>
+      <image class="filter-icon" bindtap="showSources" src="./images/filter-list.svg" />
+    </view>
+    <view class="post-source-container" wx:if="{{showSources}}">
+      <zan-tag style="padding:10rpx;" class="source-tag" wx:for="{{postSources}}" wx:key="{{item.value}}" bindtap="selectTag" data-type="{{item.value}}" type="{{item.tagType}}" disabled="{{item.disabled}}" plain>{{item.name}}</zan-tag>
+    </view>
+  </view>
   <view class="list-view">
-    <view class="news" wx:for="{{items}}" data-url="{{item.url}}" bindtap="showNewsDetail">
+    <view class="news" wx:for="{{items}}" wx:key="{{item.id}}" data-id="{{item.id}}" data-title="{{item.title}}" data-url="{{item.url}}" data-imgUrl="{{item.imgUrl}}" bindtap="showNewsDetail">
+      <view class="news-header">
+        <view class="news-source">{{item.source}}</view>
+        <view class="news-time">{{item.time}}</view>
+      </view>
       <view class="news-icon" style="background-image:url('{{item.imgUrl}}')"></view>
       <view class="news-detail">
-        <text class="news-title">{{item.title}}</text>
-        <text class="news-description">{{item.subTitle}}</text>
-        <text class="news-time">{{item.time}}</text>
-        <text class="news-time">{{item.source}}</text>
+        <text class="{{!item.haveRead && 'news-title'}} {{item.haveRead && 'have-read-news-title'}}">{{item.title}}</text>
+        <text class="{{!item.haveRead && 'news-description'}} {{item.haveRead && 'have-read-news-description'}}">{{item.subTitle}}</text>
       </view>
     </view>
   </view>

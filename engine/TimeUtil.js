@@ -1,4 +1,5 @@
 import regeneratorRuntime from './lib/regenerator.js'
+import wx from './wx'
 
 export default class TimeUtil {
   static MINUTE_SECONDS = 60
@@ -30,41 +31,33 @@ export default class TimeUtil {
     }
 
     if (second < TimeUtil.HOUR_SECONDS) {
-      const minute = second / TimeUtil.MINUTE_SECONDS + ''
-      const dotPosition = minute.indexOf('.')
-      if (dotPosition === -1) {
-        return { time: minute, unit: 'minute' }
-      }
+      const minute = Math.round(second / TimeUtil.MINUTE_SECONDS)
 
-      return {time: minute.substring(0, dotPosition + 2), unit: 'minute'}
+      return { time: minute, unit: 'minute' }
     }
 
     if (second < TimeUtil.DAY_SECONDS) {
-      const hour = second / TimeUtil.HOUR_SECONDS + ''
-      const dotPosition = hour.indexOf('.')
-      if (dotPosition === -1) {
-        return { time: hour, unit: 'hour' }
-      }
+      const hour = Math.round(second / TimeUtil.HOUR_SECONDS)
 
-      return {time: hour.substring(0, dotPosition + 2), unit: 'hour'}
+      return { time: hour, unit: 'hour' }
     }
 
-    const day = second / TimeUtil.DAY_SECONDS + ''
-    const dotPosition = day.indexOf('.')
-    if (dotPosition === -1) {
-      return { time: day, unit: 'day' }
-    }
+    const day = Math.round(second / TimeUtil.DAY_SECONDS)
 
-    return {time: day.substring(0, dotPosition + 2), unit: 'day'}
+    return { time: day, unit: 'day' }
   }
 
   static parseTimeFields = (data) => {
     for (const field in data) {
       if ((typeof(data[field]) === 'object' || typeof(data[field]) === 'array')  && data[field]) {
-        Engine.parseTimeFields(data[field])
+        TimeUtil.parseTimeFields(data[field])
       } else {
-        if (field.match(/At$/) || field.match(/Time$/)) {
-          data[field] = new Date(data[field].replace(/-/g, '/'))
+        if (field.match(/At$/) || field.match(/time$/)) {
+          let newDate = new Date(data[field].replace(/-/g, '/'))
+          if (newDate.toDateString() === new Date().toDateString()) {
+            const timeAndUnit = TimeUtil.getTimeAndUnit((new Date().getTime() - newDate.getTime()) / 1000)
+            data[field] = wx.i18n(`timeAndUnit.${timeAndUnit.unit}`, timeAndUnit.time)
+          }
         }
       }
     }

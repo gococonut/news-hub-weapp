@@ -1,0 +1,39 @@
+/* pages/detail/index.wxss */
+.header-img {
+  height: 460rpx;
+  width: 100%;
+  background-size: 100% 100%;
+}
+
+.title {
+  margin-left: 30rpx;
+  margin-top: 30rpx;
+  margin-right: 30rpx;
+  color: #333333;
+  font-size: 1.25rem;
+  text-align: center;
+}
+
+.content {
+  margin-top: 30rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.content-text {
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+  color: #333333;
+  font-size: .9375rem;
+}
+
+.content-video {
+  color: #888888;
+  font-size: .875rem;
+}
+
+.content:last-child {
+  margin-bottom: 30rpx;
+}
