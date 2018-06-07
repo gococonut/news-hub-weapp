@@ -3,13 +3,10 @@ export default class config {
 
   static envs = {
     dev: {
-      baseUrl: 'localhost:8080/posts'
-    },
-    staging: {
-      baseUrl: 'https://staging-ajax.coconut.com'
+      baseUrl: 'http://192.168.222.96:9999'
     },
     prod: {
-      baseUrl: 'https://ajax.coconut.com'
+      baseUrl: 'http://192.168.222.96:9999'
     }
   }
 

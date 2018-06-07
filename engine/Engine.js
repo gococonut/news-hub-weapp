@@ -35,38 +35,11 @@ export default class Engine {
   // 微信登录 或 第三方登录
   static login = async () => {
     const { code } = await wx.login()
-
-    let encryptedData, iv, userInfo
-    try {
-      ({ userInfo, encryptedData, iv } = await wx.getUserInfo({ withCredentials: true }))
-    } catch (error) {
-      ({ userInfo, encryptedData, iv } = await Engine.getUserInfoWithPermissionModal())
-    }
-
-    await Storage.setItem('userInfo', userInfo )
+    console.log(code)
   }
 
   static setRestBaseData = (data) => {
     Engine.rest.data = { ...Engine.rest.data, ...data }
-  }
-
-  static async getUserInfoWithPermissionModal () {
-    const res = await wx.showModal({
-      title: '温馨提示',
-      content: '您已经拒绝微信授权，请开启权限，否则将无法使用当前小程序',
-      confirmText: '开启',
-      showCancel: false,
-    })
-
-
-    if (res.confirm) {
-      const setting =  await wx.openSetting()
-      if (setting.authSetting['scope.userInfo']) {
-        return await wx.getUserInfo({ withCredentials: true })
-      }
-
-      return Engine.getUserInfoWithPermissionModal()
-    }
   }
 
   static engineInitPromiseResolve = () => {

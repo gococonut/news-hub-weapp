@@ -10,7 +10,7 @@ Component({
   properties: {
     url: {
       type: String,
-      value: 'https://www.g-cores.com/categories/2/originals'
+      value: ''
     }
   },
 
@@ -21,7 +21,6 @@ Component({
 
   },
   onLoad: function (options) {
-    console.log(options.url)
     this.setData({ url: options.url })
   },
   /**

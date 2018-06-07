@@ -1,0 +1,11 @@
+<view>
+  <view class="header-img" style="background-image: url('{{headImgUrl}}')"></view>
+  <view class="title" data-url="{{sourceUrl}}" bindtap="copyUrl">{{title}}</view>
+  <view class="content" wx:for="{{post}}" wx:key="{{post}}" wx:for-item="content">
+    <view class="content-video" data-url="{{content.videoUrl}}" bindtap="copyUrl" wx:if="{{content.videoUrl}}">点击复制视频链接</view>
+    <view class="content-img" wx:if="{{content.imageUrls}}" wx:for="{{content.imageUrls}}">
+      <image mode="widthFix" wx:if="{{item}}" data-src="{{item}}" src="{{item}}" bindtap="previewImage"/>
+    </view>
+    <view class="content-text" wx:if="{{content.text}}" data-url="{{content.textUrl}}" bindtap="copyUrl">{{content.text}}</view>
+  </view>
+</view>

@@ -1,4 +1,5 @@
 import { DateExtension, Engine, I18N, Rest, regeneratorRuntime, resources, wx } from './engine/index'
+import config from './config'
 
 function init() {
   // init i18n
@@ -6,6 +7,7 @@ function init() {
   I18N.setLocale('zh-CN')
   wx.i18n = I18N.i18n
   DateExtension.init()
+  Rest.baseUrl = config.envs[config.env].baseUrl
 }
 
 init()

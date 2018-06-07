@@ -10,7 +10,7 @@ SequencePage({
   },
   _fetchNews: async function () {
     const newsRequestData = {
-      path: 'http://192.168.222.96:9999/posts',
+      path: '/posts',
       params: {},
       idField: 'title'
     }
@@ -29,7 +29,6 @@ SequencePage({
     wx.stopPullDownRefresh()
   },
   showNewsDetail: function (e) {
-    console.log(e.currentTarget.dataset)
-    wx.navigateTo({ url: `/pages/webviewContainer/index?url=${e.currentTarget.dataset.url}` })
+    wx.navigateTo({ url: `/pages/detail/index?sourceUrl=${e.currentTarget.dataset.url}&id=${e.currentTarget.dataset.id}&title=${e.currentTarget.dataset.title}&imgUrl=${e.currentTarget.dataset.imgurl}` })
   }
 })
